@@ -19,14 +19,15 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 4. Appropriately labels the data set with descriptive variable names
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
+##Code Book
 
-##Script Usage
+###Script Usage
 1. Download the zip file
 2. Extract the zip file into ./data
 3. Run the run_analysis.R script from the R home directory
 4. The output of the script will be wirtten to: ./data/UCI HAR Dataset/tidy.txt
 
-##Script explanation
+###Script explanation
 The run_analysis.R script:
 - Loads column headings from features.txt
 - Loads the X_test.txt and X_train.txt files adding column headings in the read 
@@ -37,12 +38,34 @@ The run_analysis.R script:
 - Averages each column, grouped by Subject and Activity giving the average value for each column for each subject and activity
 - Writes out the result in the file tidy.txt
 
-##Data Description
-###Source
+###tidy.txt Description
+tidy.txt is:
+- a text file
+- Space delimited
+- The first row contains the column headings
+- "s used to delimit text items
+- Numerics in natural form to 15 decimal places
+
+To read tidy.txt into R use `read.table("tidy.txt", header = TRUE)`
+
+Each tidy.txt observation (row) is the average of all observations for each subject and activity from the combined data of the orginal data set (found in 'train/X_train.txt' and 'test/X_test.txt'.
+
+Note:  While tidy.txt uses the same feature names as the original data set, the measurements contained are averages of the original data set measurements.
+
+####Example
+"Subject" "Activity" "tBodyAcc-mean()-X" "tBodyAcc-mean()-Y"
+
+1 "WALKING" 0.277330758736842 -0.0173838185273684
+
+For Subject "1", Activity "Walking", the average reading of "tBodyAcc-mean()-X" is 0.277330758736842
+
+
+###Original Data Description
+####Source
 The original data, along with citations, can be found here
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-###Original Code Book
+####Original Code Book
 
 >==================================================================
 >Human Activity Recognition Using Smartphones Dataset
@@ -122,23 +145,3 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 >Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
 >
 
-###tidy.txt Description
-tidy.txt is:
-- a text file
-- Space delimited
-- The first row contains the column headings
-- "s used to delimit text items
-- Numerics in natural form to 15 decimal places
-
-To read tidy.txt into R use `read.table("tidy.txt", header = TRUE)`
-
-Each tidy.txt observation (row) is the average of all observations for each subject and activity from the combined data of the orginal data set (found in 'train/X_train.txt' and 'test/X_test.txt'.
-
-Note:  While tidy.txt uses the same feature names as the original data set, the measurements contained are averages of the original data set measurements.
-
-####Example
-"Subject" "Activity" "tBodyAcc-mean()-X" "tBodyAcc-mean()-Y"
-
-1 "WALKING" 0.277330758736842 -0.0173838185273684
-
-For Subject "1", Activity "Walking", the average reading of "tBodyAcc-mean()-X" is 0.277330758736842
